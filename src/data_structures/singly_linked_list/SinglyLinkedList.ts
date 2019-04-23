@@ -117,14 +117,3 @@ class SinglyLinkedList {
     return temp.val;
   }
 }
-
-const random = () => Math.floor(Math.random() * 99) + 1;
-const list = new SinglyLinkedList();
-list.push(random());
-list.push(random());
-list.push(random());
-list.push(random());
-list.push(random());
-console.log(list);
-console.log(list.remove(1));
-console.log(list);

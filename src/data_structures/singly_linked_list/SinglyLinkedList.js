@@ -106,8 +106,8 @@ var SinglyLinkedList = /** @class */ (function () {
     };
     SinglyLinkedList.prototype.remove = function (index) {
         if (index < 0 || index > this.length)
-            return false;
-        if (index === this.length)
+            return undefined;
+        if (index === this.length - 1)
             return !!this.pop();
         if (index === 0)
             return !!this.shift();
@@ -120,13 +120,3 @@ var SinglyLinkedList = /** @class */ (function () {
     };
     return SinglyLinkedList;
 }());
-var random = function () { return Math.floor(Math.random() * 99) + 1; };
-var list = new SinglyLinkedList();
-list.push(random());
-list.push(random());
-list.push(random());
-list.push(random());
-list.push(random());
-console.log(list);
-console.log(list.remove(1));
-console.log(list);
