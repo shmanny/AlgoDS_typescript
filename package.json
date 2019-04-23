@@ -1,0 +1,14 @@
+{
+  "name": "algos_and_ds",
+  "version": "1.0.0",
+  "description": "Algorithms and Datastructures in Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Aman Saran",
+  "license": "ISC",
+  "dependencies": {
+    "ts-node": "^8.1.0"
+  }
+}
