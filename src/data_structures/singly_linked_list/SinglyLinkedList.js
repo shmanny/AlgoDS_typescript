@@ -118,5 +118,45 @@ var SinglyLinkedList = /** @class */ (function () {
         this.length -= 1;
         return temp.val;
     };
+    /* Initialize three pointers: current, next, and prev. Set current to the head and set both prev and next to be null.
+    Starting at the begging of the list, store the next node after current in the variable "next". Set the next property of
+    "current" to be the empty node "prev". Set the value of "prev" to be the value of current. Set the value of current to be
+    the value of next. After the first iteration, you should have prev as the original head, and both previous and next as the
+    node immediately after the head. Repeat this process until you reach the end of the list.   */
+    SinglyLinkedList.prototype.reverse = function () {
+        var current = this.head;
+        this.tail = current;
+        var prev;
+        var next;
+        while (current) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        this.head = prev;
+        this.tail.next = null;
+        return this;
+    };
+    SinglyLinkedList.prototype.print = function () {
+        var nodes = [];
+        var current = this.head;
+        for (var i = 0; i < this.length; i++) {
+            nodes.push(current.val);
+            current = current.next;
+        }
+        console.log(nodes.join(' -> '));
+    };
     return SinglyLinkedList;
 }());
+var list = new SinglyLinkedList();
+var random = function () { return Math.floor(Math.random() * 100); };
+list.push(random());
+list.push(random());
+list.push(random());
+list.push(random());
+list.print();
+console.log(list);
+list.reverse();
+console.log(list);
+list.print();

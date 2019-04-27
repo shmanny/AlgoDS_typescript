@@ -116,4 +116,48 @@ class SinglyLinkedList {
     this.length -= 1;
     return temp.val;
   }
+
+  /* Initialize three pointers: current, next, and prev. Set current to the head and set both prev and next to be null. 
+  Starting at the begging of the list, store the next node after current in the variable "next". Set the next property of
+  "current" to be the empty node "prev". Set the value of "prev" to be the value of current. Set the value of current to be 
+  the value of next. After the first iteration, you should have prev as the original head, and both previous and next as the
+  node immediately after the head. Repeat this process until you reach the end of the list.   */
+
+  public reverse() {
+    let current = this.head;
+    this.tail = current;
+    let prev;
+    let next;
+
+    while (current) {
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+    this.head = prev;
+    this.tail.next = null;
+    return this;
+  }
+
+  public print() {
+    const nodes = [];
+    let current = this.head;
+    for (let i = 0; i < this.length; i++) {
+      nodes.push(current.val);
+      current = current.next;
+    }
+    console.log(nodes.join(' -> '));
+  }
 }
+
+/* 
+  Used to generate a random linked list of length 4 for testing
+*/
+const list = new SinglyLinkedList();
+const random = () => Math.floor(Math.random() * 100);
+list.push(random());
+list.push(random());
+list.push(random());
+list.push(random());
+list.print();
