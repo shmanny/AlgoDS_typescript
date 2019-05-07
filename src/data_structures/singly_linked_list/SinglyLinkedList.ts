@@ -105,6 +105,15 @@ class SinglyLinkedList {
     return true;
   }
 
+  /* 
+    First, we check if the index passed in is less than zero or greater than the length
+    of the list. In both scenarios, the index is invalid and we theerefore return undefined.
+    If the index passed in is zero, we can simply use the unshift method to remove the head.
+    We first create three reference pointers: one for the node before the passed in index, on for
+    the node at the index itself, and one for the node after the index. We set the next property
+    of "before" to be the node stored in "after" removing any references to the node at the index
+    passed in.
+  */
   public remove(index: number): boolean {
     if (index < 0 || index > this.length) return undefined;
     if (index === this.length - 1) return !!this.pop();
