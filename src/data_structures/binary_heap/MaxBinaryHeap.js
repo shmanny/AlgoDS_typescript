@@ -6,11 +6,13 @@ var MaxBinaryHeap = /** @class */ (function () {
         this.values.push(val);
         this.bubbleUp();
     };
-    MaxBinaryHeap.prototype.remove = function () {
+    MaxBinaryHeap.prototype.extractMax = function () {
+        var max = this.values[0];
         var lastNode = this.values[this.values.length - 1];
         this.values[0] = lastNode;
         this.values.pop();
         this.sinkDown();
+        return max;
     };
     MaxBinaryHeap.prototype.sinkDown = function () {
         var idx = 0;
@@ -43,8 +45,3 @@ var MaxBinaryHeap = /** @class */ (function () {
     };
     return MaxBinaryHeap;
 }());
-var maxHeap = new MaxBinaryHeap();
-maxHeap.values = [41, 39, 33, 18, 27, 12];
-console.log(maxHeap.values);
-maxHeap.remove();
-console.log(maxHeap.values);
