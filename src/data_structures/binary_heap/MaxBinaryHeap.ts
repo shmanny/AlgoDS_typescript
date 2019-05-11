@@ -10,11 +10,13 @@ class MaxBinaryHeap {
     this.bubbleUp();
   }
 
-  public remove() {
+  public extractMax() {
+    const max = this.values[0];
     const lastNode = this.values[this.values.length - 1];
     this.values[0] = lastNode;
     this.values.pop();
     this.sinkDown();
+    return max;
   }
 
   private sinkDown() {
@@ -47,9 +49,3 @@ class MaxBinaryHeap {
     }
   }
 }
-
-const maxHeap = new MaxBinaryHeap();
-maxHeap.values = [41, 39, 33, 18, 27, 12];
-console.log(maxHeap.values);
-maxHeap.remove();
-console.log(maxHeap.values);
