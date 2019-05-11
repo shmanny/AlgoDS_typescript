@@ -126,6 +126,11 @@ class DoublyLinkedList {
     return this;
   }
 
+  public remove(index: number) {
+    const foundNode = this.get(index);
+    
+  }
+
   public print() {
     if (!this.length) {
       console.log('The list is empty, yo');

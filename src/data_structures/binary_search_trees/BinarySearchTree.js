@@ -58,62 +58,13 @@ var BinarySearchTree = /** @class */ (function () {
             }
         }
     };
-    BinarySearchTree.prototype.BFS = function () {
-        var queue = [], visited = [];
-        var current = this.root;
-        queue.push(current);
-        while (queue.length) {
-            current = queue.shift();
-            if (current.left)
-                queue.push(current.left);
-            if (current.right)
-                queue.push(current.right);
-            visited.push(current.value);
-        }
-        return visited;
-    };
-    BinarySearchTree.prototype.DFSPreOrder = function () {
-        var current = this.root, visited = [];
-        function traverse(node) {
-            visited.push(node.value);
-            if (node.left !== null)
-                traverse(node.left);
-            if (node.right !== null)
-                traverse(node.right);
-        }
-        traverse(current);
-        return visited;
-    };
-    BinarySearchTree.prototype.DFSPostOrder = function () {
-        var current = this.root, visited = [];
-        function traverse(node) {
-            if (node.left !== null)
-                traverse(node.left);
-            if (node.right !== null)
-                traverse(node.right);
-            visited.push(node.value);
-        }
-        traverse(current);
-        return visited;
-    };
-    BinarySearchTree.prototype.DFSInOrder = function () {
-        var current = this.root, visited = [];
-        function traverse(node) {
-            if (node.left !== null)
-                traverse(node.left);
-            visited.push(node.value);
-            if (node.right !== null)
-                traverse(node.right);
-        }
-        traverse(current);
-        return visited;
-    };
     return BinarySearchTree;
 }());
 var bst = new BinarySearchTree();
 var random = function () { return Math.floor(Math.random() * 100); };
-// const randoms = [random(), random(), random(), random(), random()];
-var randoms = [10, 6, 15, 3, 8, 20];
-console.log(randoms);
-randoms.forEach(function (random) { return bst.insert(random); });
-console.log(bst.DFSInOrder());
+bst.insert(random());
+bst.insert(random());
+bst.insert(random());
+bst.insert(random());
+bst.insert(5);
+console.log(bst.find(5));
