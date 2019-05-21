@@ -58,5 +58,23 @@ class Graph {
     return results;
   }
 
-  public DFSIterative(start: string) {}
+  public DFSIterative(start: string) {
+    const vertices = [];
+    const visited = {};
+    const results = [];
+
+    vertices.push(start);
+    visited[start] = true;
+
+    while (vertices.length) {
+      const vertex = vertices.pop();
+      if (!visited[vertex]) {
+        visited[vertex] = true;
+        results.push(vertex);
+        results.concat(this.adjacencyList[vertex]);
+      }
+    }
+
+    return results;
+  }
 }
