@@ -5,8 +5,8 @@ class Graph {
     this.adjacencyList = {};
   }
 
-  public addVertex(vertex: string) {
-    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+  public addcurrentVertex(currentVertex: string) {
+    if (!this.adjacencyList[currentVertex]) this.adjacencyList[currentVertex] = [];
   }
 
   public addEdge(vert1: string, vert2: string) {
@@ -27,16 +27,16 @@ class Graph {
     }
   }
 
-  public removeVertex(vertex: string) {
-    if (this.adjacencyList[vertex]) {
-      while (this.adjacencyList[vertex].length) {
-        const adjacentVert = this.adjacencyList[vertex].pop();
+  public removecurrentVertex(currentVertex: string) {
+    if (this.adjacencyList[currentVertex]) {
+      while (this.adjacencyList[currentVertex].length) {
+        const adjacentVert = this.adjacencyList[currentVertex].pop();
         this.adjacencyList[adjacentVert] = this.adjacencyList[adjacentVert].filter(v => {
-          v !== vertex;
+          v !== currentVertex;
         });
       }
     } else {
-      throw Error(`Graph does not contain vertex: ${vertex}`);
+      throw Error(`Graph does not contain currentVertex: ${currentVertex}`);
     }
   }
 
@@ -45,13 +45,13 @@ class Graph {
     const results = [];
     const adjacencyList = this.adjacencyList;
 
-    (function DFS(vertex?: string) {
-      if (!vertex) return;
-      visited[vertex] = true;
-      results.push(vertex);
-      for (let i = 0; i < adjacencyList[vertex].length; i++) {
-        if (!visited[adjacencyList[vertex][i]]) {
-          return DFS(adjacencyList[vertex][i]);
+    (function DFS(currentVertex?: string) {
+      if (!currentVertex) return;
+      visited[currentVertex] = true;
+      results.push(currentVertex);
+      for (let i = 0; i < adjacencyList[currentVertex].length; i++) {
+        if (!visited[adjacencyList[currentVertex][i]]) {
+          return DFS(adjacencyList[currentVertex][i]);
         }
       }
     })(start);
@@ -59,22 +59,45 @@ class Graph {
   }
 
   public DFSIterative(start: string) {
-    const vertices = [];
+    const vertices = [start];
     const visited = {};
     const results = [];
 
-    vertices.push(start);
     visited[start] = true;
+    let currentVertex;
 
     while (vertices.length) {
-      const vertex = vertices.pop();
-      if (!visited[vertex]) {
-        visited[vertex] = true;
-        results.push(vertex);
-        results.concat(this.adjacencyList[vertex]);
-      }
+      currentVertex = vertices.pop();
+      results.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          vertices.push(neighbor);
+        }
+      });
     }
 
     return results;
+  }
+
+  public BFSIterative(start: string) {
+    const queue = [start];
+    const results = [];
+    const visited = {};
+
+    visited[start] = true;
+    let currentVertex;
+
+    while (queue.length) {
+      currentVertex = queue.shift();
+      results.push(currentVertex);
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      });
+    }
   }
 }
