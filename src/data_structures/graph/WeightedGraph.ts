@@ -1,25 +1,6 @@
-class PriorityQueue {
-  public values: Array<any>;
+import { PriorityQueue } from '../binary_heap/PriorityQueue';
 
-  constructor() {
-    this.values = [];
-  }
-
-  public enqueue(val: any, priority: number) {
-    this.values.push({ val, priority });
-    this.sort();
-  }
-
-  public dequeue() {
-    return this.values.shift();
-  }
-
-  private sort() {
-    this.values.sort((a, b) => a.priority - b.priority);
-  }
-}
-
-class WeightedweightedGraph {
+class WeightedGraph {
   public adjacencyList: Object;
 
   constructor() {
@@ -57,9 +38,9 @@ class WeightedweightedGraph {
       previous[vertex] = null;
     }
 
-    while (priorityQueue.values.length) {
+    while (priorityQueue.queue.length) {
       smallestNode = priorityQueue.dequeue();
-      let { val: smallest } = smallestNode;
+      let { value: smallest } = smallestNode;
       if (smallest === end) {
         while (previous[smallest]) {
           path.push(smallest);
@@ -82,7 +63,7 @@ class WeightedweightedGraph {
   }
 }
 
-var weightedGraph = new WeightedweightedGraph();
+var weightedGraph = new WeightedGraph();
 weightedGraph.addVertex('A');
 weightedGraph.addVertex('B');
 weightedGraph.addVertex('C');

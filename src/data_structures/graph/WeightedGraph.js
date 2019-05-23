@@ -1,28 +1,15 @@
-var PriorityQueue = /** @class */ (function () {
-    function PriorityQueue() {
-        this.values = [];
-    }
-    PriorityQueue.prototype.enqueue = function (val, priority) {
-        this.values.push({ val: val, priority: priority });
-        this.sort();
-    };
-    PriorityQueue.prototype.dequeue = function () {
-        return this.values.shift();
-    };
-    PriorityQueue.prototype.sort = function () {
-        this.values.sort(function (a, b) { return a.priority - b.priority; });
-    };
-    return PriorityQueue;
-}());
-var WeightedweightedGraph = /** @class */ (function () {
-    function WeightedweightedGraph() {
+"use strict";
+exports.__esModule = true;
+var PriorityQueue_1 = require("../binary_heap/PriorityQueue");
+var WeightedGraph = /** @class */ (function () {
+    function WeightedGraph() {
         this.adjacencyList = {};
     }
-    WeightedweightedGraph.prototype.addVertex = function (vertex) {
+    WeightedGraph.prototype.addVertex = function (vertex) {
         if (!this.adjacencyList[vertex])
             this.adjacencyList[vertex] = [];
     };
-    WeightedweightedGraph.prototype.addEdge = function (vert1, vert2, weight) {
+    WeightedGraph.prototype.addEdge = function (vert1, vert2, weight) {
         if (this.adjacencyList[vert1] && this.adjacencyList[vert2]) {
             this.adjacencyList[vert1].push({ node: vert2, weight: weight });
             this.adjacencyList[vert2].push({ node: vert1, weight: weight });
@@ -31,10 +18,10 @@ var WeightedweightedGraph = /** @class */ (function () {
             throw Error('Both vertices do not exist');
         }
     };
-    WeightedweightedGraph.prototype.DijkstrasAlgorithm = function (start, end) {
+    WeightedGraph.prototype.DijkstrasAlgorithm = function (start, end) {
         var distances = {};
         var previous = {};
-        var priorityQueue = new PriorityQueue();
+        var priorityQueue = new PriorityQueue_1.PriorityQueue();
         var smallestNode;
         var path = [];
         for (var vertex in this.adjacencyList) {
@@ -50,7 +37,7 @@ var WeightedweightedGraph = /** @class */ (function () {
         }
         var _loop_1 = function () {
             smallestNode = priorityQueue.dequeue();
-            var smallest = smallestNode.val;
+            var smallest = smallestNode.value;
             if (smallest === end) {
                 while (previous[smallest]) {
                     path.push(smallest);
@@ -71,16 +58,16 @@ var WeightedweightedGraph = /** @class */ (function () {
             }
         };
         var this_1 = this;
-        while (priorityQueue.values.length) {
+        while (priorityQueue.queue.length) {
             var state_1 = _loop_1();
             if (state_1 === "break")
                 break;
         }
         return path.concat(start).reverse();
     };
-    return WeightedweightedGraph;
+    return WeightedGraph;
 }());
-var weightedGraph = new WeightedweightedGraph();
+var weightedGraph = new WeightedGraph();
 weightedGraph.addVertex('A');
 weightedGraph.addVertex('B');
 weightedGraph.addVertex('C');

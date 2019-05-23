@@ -65,27 +65,4 @@ var PriorityQueue = /** @class */ (function () {
     };
     return PriorityQueue;
 }());
-var priorityQueue = new PriorityQueue();
-var randomValues = [
-    '',
-    'Concussion',
-    'Headache',
-    'Cold',
-    'Drunk',
-    'Cut',
-    'Cough',
-    'Rash',
-    'Stubbed Toe',
-    'Broken Nail',
-    'Diarreah'
-];
-var randomPriority = function () { return Math.floor(Math.random() * 10); };
-priorityQueue.enqueue(randomValues[randomPriority()], 4);
-priorityQueue.enqueue(randomValues[randomPriority()], 7);
-priorityQueue.enqueue(randomValues[randomPriority()], 2);
-priorityQueue.enqueue(randomValues[randomPriority()], 9);
-priorityQueue.enqueue(randomValues[randomPriority()], 1);
-console.log(priorityQueue.queue);
-priorityQueue.dequeue();
-console.log('***************');
-console.log(priorityQueue.queue);
+exports.PriorityQueue = PriorityQueue;

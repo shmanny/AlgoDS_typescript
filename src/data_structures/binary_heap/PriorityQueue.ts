@@ -8,7 +8,7 @@ export class Node {
   }
 }
 
-class PriorityQueue {
+export class PriorityQueue {
   public queue: Array<Node>;
   constructor() {
     this.queue = [];
@@ -71,4 +71,3 @@ class PriorityQueue {
     }
   }
 }
-
